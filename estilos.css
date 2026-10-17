@@ -1,0 +1,566 @@
+/* ==========================================
+   CONFIGURACIÓN GENERAL Y FONDO ESPACIAL
+========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    min-height: 100vh; 
+    padding: 40px 20px; 
+    color: #e6cdff; 
+    background: #05020f;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Lienzo de Estrellas */
+#estrellas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Capa de Nebulosa Animada */
+.nebulosa {
+    position: fixed;
+    inset: -20%;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 20% 35%, rgba(112, 0, 255, 0.25), transparent 35%),
+        radial-gradient(ellipse at 80% 65%, rgba(65, 0, 180, 0.22), transparent 35%),
+        radial-gradient(ellipse at 50% 50%, rgba(25, 12, 70, 0.25), transparent 60%);
+    animation: flotar 15s ease-in-out infinite alternate;
+}
+
+@keyframes flotar {
+    from { transform: translate(-2%, -1%) scale(1); }
+    to { transform: translate(2%, 1%) scale(1.08); }
+}
+
+/* ==========================================
+   ASTRONAUTA UIVERSE (SOLO ASTRONAUTA FLOTANDO)
+========================================== */
+@keyframes astronaut {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.astronaut {
+    width: 230px;
+    height: 280px;
+    position: fixed;
+    z-index: 2;
+    top: calc(50% - 140px);
+    left: 4%;
+    animation: astronaut 7s linear infinite;
+    pointer-events: none;
+}
+
+.schoolbag {
+    width: 90px;
+    height: 135px;
+    position: absolute;
+    z-index: 1;
+    top: calc(50% - 67px);
+    left: calc(50% - 45px);
+    background-color: #94b7ca;
+    border-radius: 45px 45px 0 0 / 27px 27px 0 0;
+}
+
+.head {
+    width: 87px;
+    height: 72px;
+    position: absolute;
+    z-index: 3;
+    background: -webkit-linear-gradient(left, #e3e8eb 0%, #e3e8eb 50%, #fbfdfa 50%, #fbfdfa 100%);
+    border-radius: 50%;
+    top: 30px;
+    left: calc(50% - 43.5px);
+}
+
+.head:after {
+    content: "";
+    width: 54px;
+    height: 45px;
+    position: absolute;
+    top: calc(50% - 22.5px);
+    left: calc(50% - 27px);
+    background: -webkit-linear-gradient(top, #15aece 0%, #15aece 50%, #0391bf 50%, #0391bf 100%);
+    border-radius: 13px;
+}
+
+.head:before {
+    content: "";
+    width: 11px;
+    height: 22px;
+    position: absolute;
+    top: calc(50% - 11px);
+    left: -3px;
+    background-color: #618095;
+    border-radius: 4px;
+    box-shadow: 82px 0px 0px #618095;
+}
+
+.body {
+    width: 76px;
+    height: 90px;
+    position: absolute;
+    z-index: 2;
+    border-radius: 36px / 18px;
+    top: 94px;
+    left: calc(50% - 37px);
+    background: -webkit-linear-gradient(left, #e3e8eb 0%, #e3e8eb 50%, #fbfdfa 50%, #fbfdfa 100%);
+}
+
+.panel {
+    width: 54px;
+    height: 36px;
+    position: absolute;
+    top: 18px;
+    left: calc(50% - 27px);
+    background-color: #b7cceb;
+}
+
+.panel:before {
+    content: "";
+    width: 27px;
+    height: 4px;
+    position: absolute;
+    top: 8px;
+    left: 6px;
+    background-color: #fbfdfa;
+    box-shadow: 0px 8px 0px #fbfdfa, 0px 16px 0px #fbfdfa;
+}
+
+.panel:after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    top: 8px;
+    right: 6px;
+    background-color: #fbfdfa;
+    border-radius: 50%;
+    box-shadow: 0px 12px 0px 2px #fbfdfa;
+}
+
+.arm {
+    width: 72px;
+    height: 27px;
+    position: absolute;
+    top: 108px;
+    z-index: 2;
+}
+
+.arm-left {
+    left: 27px;
+    background-color: #e3e8eb;
+    border-radius: 0 0 0 35px;
+}
+
+.arm-right {
+    right: 27px;
+    background-color: #fbfdfa;
+    border-radius: 0 0 35px 0;
+}
+
+.arm-left:before,
+.arm-right:before {
+    content: "";
+    width: 27px;
+    height: 63px;
+    position: absolute;
+    top: -36px;
+}
+
+.arm-left:before {
+    border-radius: 45px 45px 0px 108px / 45px 45px 0 99px;
+    left: 0;
+    background-color: #e3e8eb;
+}
+
+.arm-right:before {
+    border-radius: 45px 45px 108px 0 / 45px 45px 99px 0;
+    right: 0;
+    background-color: #fbfdfa;
+}
+
+.arm-left:after,
+.arm-right:after {
+    content: "";
+    width: 27px;
+    height: 9px;
+    position: absolute;
+    top: -21px;
+}
+
+.arm-left:after {
+    background-color: #6e91a4;
+    left: 0;
+}
+
+.arm-right:after {
+    right: 0;
+    background-color: #b6d2e0;
+}
+
+.leg {
+    width: 27px;
+    height: 36px;
+    position: absolute;
+    z-index: 2;
+    bottom: 63px;
+}
+
+.leg-left {
+    left: 68px;
+    background-color: #e3e8eb;
+    transform: rotate(20deg);
+}
+
+.leg-right {
+    right: 65px;
+    background-color: #fbfdfa;
+    transform: rotate(-20deg);
+}
+
+.leg-left:before,
+.leg-right:before {
+    content: "";
+    width: 45px;
+    height: 22px;
+    position: absolute;
+    bottom: -23px;
+}
+
+.leg-left:before {
+    left: -18px;
+    background-color: #e3e8eb;
+    border-radius: 27px 0 0 0;
+    border-bottom: 9px solid #6d96ac;
+}
+
+.leg-right:before {
+    right: -18px;
+    background-color: #fbfdfa;
+    border-radius: 0 27px 0 0;
+    border-bottom: 9px solid #b0cfe4;
+}
+
+/* Ocultar astronauta en móviles o pantallas angostas */
+@media (max-width: 1050px) {
+    .astronaut {
+        display: none;
+    }
+}
+
+/* ==========================================
+   CONTENEDOR DEL FORMULARIO (GLASSMORPHISM)
+========================================== */
+.contenedor { 
+    max-width: 450px; 
+    background: rgba(20, 10, 45, 0.75);
+    backdrop-filter: blur(12px); 
+    border: 1px solid rgba(172, 105, 255, 0.3);
+    padding: 25px; 
+    border-radius: 16px; 
+    box-shadow: 0 0 30px rgba(140, 50, 255, 0.25); 
+    margin: 0 auto; 
+    position: relative;
+    z-index: 10;
+}
+
+h2 { 
+    text-align: center; 
+    color: #d7a0ff; 
+    margin-bottom: 20px; 
+    text-shadow: 0 0 10px rgba(167, 70, 255, 0.5);
+}
+
+.seccion { 
+    margin-bottom: 20px; 
+    padding-bottom: 15px; 
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2); 
+}
+
+label { 
+    display: block; 
+    margin-bottom: 8px; 
+    font-weight: bold; 
+    color: #d4c8ed;
+}
+
+select { 
+    width: 100%; 
+    padding: 10px; 
+    border-radius: 6px; 
+    border: 1px solid rgba(189, 106, 255, 0.4); 
+    background: rgba(10, 5, 25, 0.8);
+    color: white;
+    font-size: 15px; 
+}
+
+select option {
+    background: #140a2d;
+    color: white;
+}
+
+select, input[type="radio"], input[type="checkbox"] { 
+    cursor: pointer; 
+}
+
+.opciones-inline { 
+    display: flex; 
+    gap: 15px; 
+    align-items: center; 
+}
+
+.checkbox-group { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+.checkbox-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    color: #c9c0dc;
+}
+
+button { 
+    width: 100%; 
+    padding: 12px; 
+    background-color: #7826bc; 
+    color: white; 
+    border: 1px solid #bd6aff;
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    font-weight: bold; 
+    transition: all 0.3s ease; 
+}
+
+button:hover { 
+    background-color: #9333ea; 
+    box-shadow: 0 0 20px #a13cff;
+    transform: translateY(-2px);
+}
+
+#reciboRespuesta { 
+    margin-top: 20px; 
+    padding: 15px; 
+    border-radius: 6px; 
+    display: none; 
+    background-color: rgba(40, 20, 70, 0.9); 
+    border: 1px solid #bd6aff; 
+    color: #f3e8ff;
+}
+
+/* ==========================================
+   PANEL ADMINISTRATIVO Y HISTORIAL (ANCHO AMPLIO EN LA PARTE INFERIOR)
+========================================== */
+.panel-admin {
+    max-width: 950px;
+    margin: 40px auto 0 auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    z-index: 10;
+}
+
+.panel-admin h3 {
+    text-align: center;
+    color: #d7a0ff;
+    margin-bottom: 18px;
+    font-size: 1.25rem;
+}
+
+.panel-admin .opciones-inline {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.panel-admin button {
+    flex: 1;
+}
+
+.btn-azul {
+    background-color: rgba(0, 123, 255, 0.4) !important;
+    border-color: #007bff !important;
+}
+.btn-azul:hover {
+    background-color: #007bff !important;
+}
+
+.btn-rojo {
+    background-color: rgba(220, 53, 69, 0.4) !important;
+    border-color: #dc3545 !important;
+}
+.btn-rojo:hover {
+    background-color: #dc3545 !important;
+}
+
+#tablaHistorial {
+    margin-top: 20px;
+    max-height: 280px;
+    overflow-y: auto;
+    font-size: 14px;
+    background: rgba(10, 5, 25, 0.85);
+    border: 1px solid rgba(189, 106, 255, 0.3);
+    border-radius: 8px;
+    padding: 12px;
+    display: none;
+}
+
+.item-pedido {
+    padding: 10px;
+    background: rgba(20, 10, 45, 0.9);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    border-left: 4px solid #28a745;
+    color: #e6cdff;
+}
+/* From Uiverse.io by LeonKohli */ 
+.radio {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-direction: row-reverse;
+}
+
+.radio > input {
+  position: absolute;
+  appearance: none;
+}
+
+.radio > label {
+  cursor: pointer;
+  font-size: 30px;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.radio > label > svg {
+  fill: #666;
+  transition: fill 0.3s ease;
+}
+
+.radio > label::before,
+.radio > label::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #ff9e0b;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+  animation: particle-explosion 1s ease-out;
+}
+
+.radio > label::before {
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+}
+
+.radio > label::after {
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+}
+
+.radio > label:hover::before,
+.radio > label:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.5);
+}
+
+.radio > label:hover {
+  transform: scale(1.2);
+  animation: pulse 0.6s infinite alternate;
+}
+
+.radio > label:hover > svg,
+.radio > label:hover ~ label > svg {
+  fill: #ff9e0b;
+  filter: drop-shadow(0 0 15px rgba(255, 158, 11, 0.9));
+  animation: shimmer 1s ease infinite alternate;
+}
+
+.radio > input:checked + label > svg,
+.radio > input:checked + label ~ label > svg {
+  fill: #ff9e0b;
+  filter: drop-shadow(0 0 15px rgba(255, 158, 11, 0.9));
+  animation: pulse 0.8s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes particle-explosion {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 158, 11, 0.5));
+  }
+  100% {
+    filter: drop-shadow(0 0 20px rgba(255, 158, 11, 1));
+  }
+}
+
+.radio > input:checked + label:hover > svg,
+.radio > input:checked + label:hover ~ label > svg {
+  fill: #e58e09;
+}
+
+.radio > label:hover > svg,
+.radio > label:hover ~ label > svg {
+  fill: #ff9e0b;
+}
+
+.radio input:checked ~ label svg {
+  fill: #ffa723;
+}
